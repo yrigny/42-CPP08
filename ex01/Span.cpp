@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:43:25 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 01:37:57 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/10 02:05:00 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,12 @@ int	Span::longestSpan()
 {
 	if (_v.size() < 2)
 		throw NoSpanException();
-	std::vector<int> v = _v;
-	std::sort(v.begin(), v.end());
-	return v[v.size() - 1] - v[0];
-}
-
-unsigned int	Span::getN() const
-{
-	return _n;
+	// std::vector<int> v = _v;
+	// std::sort(v.begin(), v.end());
+	// return v[v.size() - 1] - v[0];
+	int max = *std::max_element(_v.begin(), _v.end());
+	int min = *std::min_element(_v.begin(), _v.end());
+	return max - min;
 }
 
 const std::vector<int>&	Span::getV() const

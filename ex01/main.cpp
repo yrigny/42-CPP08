@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:37:07 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 01:38:30 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/10 02:02:11 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	main()
 	Span sp3 = Span(MAX_SIZE);
 	try
 	{
-		sp3.addRange(1, MAX_SIZE);
+		sp3.addRange(MAX_SIZE, 1);
 	}
 	catch(const std::exception& e)
 	{

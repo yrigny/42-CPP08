@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:38:07 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 00:14:29 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/10 02:01:30 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ class Span
 		void					addRange(int start, int end);
 		int						shortestSpan();
 		int						longestSpan();
-		unsigned int			getN() const;
 		const std::vector<int>&	getV() const;
 
 		class FullException : public std::exception
