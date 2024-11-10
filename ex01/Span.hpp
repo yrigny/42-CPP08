@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:38:07 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 02:01:30 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/10 20:56:01 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 # define SPAN_HPP
 # include <vector>
 # include <algorithm>
+# include <iterator>
 # include <iostream>
 
 class Span
 {
+	typedef std::vector<int>::iterator InputIt;
+	/*	InputIt is an alias for the type of the iterator of the vector<int> 
+		if not declared in public section, it would be private */
+	
 	public:
 		Span();
 		Span(unsigned int n);
@@ -26,7 +31,7 @@ class Span
 		Span&					operator=(const Span& rhs);
 
 		void					addNumber(int n);
-		void					addRange(int start, int end);
+		void					addRange(InputIt start, InputIt end);
 		int						shortestSpan();
 		int						longestSpan();
 		const std::vector<int>&	getV() const;
@@ -38,6 +43,12 @@ class Span
 		};
 
 		class NoSpanException : public std::exception
+		{
+			public:
+				const char* what() const throw();
+		};
+
+		class BadRangeException : public std::exception
 		{
 			public:
 				const char* what() const throw();

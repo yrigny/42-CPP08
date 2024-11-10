@@ -6,27 +6,19 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:43:25 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 02:05:00 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/10 20:44:14 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span() : _n(0)
-{
-}
+Span::Span() : _n(0) {}
 
-Span::Span(unsigned int n) : _n(n)
-{
-}
+Span::Span(unsigned int n) : _n(n) {}
 
-Span::Span(const Span& src) : _n(src._n), _v(src._v)
-{
-}
+Span::Span(const Span& src) : _n(src._n), _v(src._v) {}
 
-Span::~Span()
-{
-}
+Span::~Span() {}
 
 Span&	Span::operator=(const Span& rhs)
 {
@@ -46,18 +38,11 @@ void	Span::addNumber(int n)
 		throw FullException();
 }
 
-void	Span::addRange(int start, int end)
+void	Span::addRange(InputIt start, InputIt end)
 {
-	if (start <= end)
-	{
-		for (int i = start; i <= end; i++)
-			addNumber(i);
-	}
-	else
-	{
-		for (int i = start; i >= end; i--)
-			addNumber(i);
-	}
+	if (std::distance(start, end) > static_cast<long>(_n - _v.size()))
+		throw BadRangeException();
+	_v.insert(_v.end(), start, end);
 }
 
 int	Span::shortestSpan()
@@ -67,20 +52,21 @@ int	Span::shortestSpan()
 	std::vector<int> v = _v;
 	std::sort(v.begin(), v.end());
 	std::vector<int>::iterator it;
-	int min = v[1] - v[0];
-	for (it = v.begin(); it < v.end() - 1; it++)
-		if (min > *(it + 1) - *it)
-			min = *(it + 1) - *it;
-	return min;
+	int span = v[1] - v[0];
+	for (it = v.begin() + 1; it < v.end() - 1; it++)
+	{
+		if (span == 0)
+			break;
+		if (span > *(it + 1) - *it)
+			span = *(it + 1) - *it;
+	}
+	return span;
 }
 
 int	Span::longestSpan()
 {
 	if (_v.size() < 2)
 		throw NoSpanException();
-	// std::vector<int> v = _v;
-	// std::sort(v.begin(), v.end());
-	// return v[v.size() - 1] - v[0];
 	int max = *std::max_element(_v.begin(), _v.end());
 	int min = *std::min_element(_v.begin(), _v.end());
 	return max - min;
@@ -99,6 +85,11 @@ const char*	Span::FullException::what() const throw()
 const char* Span::NoSpanException::what() const throw()
 {
 	return "Container does not have enough elements";
+}
+
+const char* Span::BadRangeException::what() const throw()
+{
+	return "Range is too big to fit in the container";
 }
 
 std::ostream&	operator<<(std::ostream& o, const Span& span)

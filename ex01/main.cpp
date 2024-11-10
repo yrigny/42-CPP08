@@ -6,12 +6,13 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:37:07 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 02:02:11 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/10 18:58:31 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 #include <iostream>
+#include <cstdlib>
 #define MAX_SIZE 100
 #define TITLE "\e[1;33m"
 #define NONE "\e[0m"
@@ -88,10 +89,14 @@ int	main()
 	}
 
 	std::cout << TITLE "Test 5: big size container & addRange() method" NONE << std::endl;
-	Span sp3 = Span(MAX_SIZE);
+	Span sp3(MAX_SIZE);
+	std::vector<int> data(MAX_SIZE);
+	srand(time(NULL));
+	for (int i = 0; i < MAX_SIZE; i++)
+		data[i] = rand() % 1000;
 	try
 	{
-		sp3.addRange(MAX_SIZE, 1);
+		sp3.addRange(data.begin(), data.end());
 	}
 	catch(const std::exception& e)
 	{
