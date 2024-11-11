@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:43:25 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 20:44:14 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/11 13:38:37 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,13 @@ int	Span::shortestSpan()
 		throw NoSpanException();
 	std::vector<int> v = _v;
 	std::sort(v.begin(), v.end());
-	std::vector<int>::iterator it;
 	int span = v[1] - v[0];
-	for (it = v.begin() + 1; it < v.end() - 1; it++)
+	for (size_t i = 1; i < v.size() - 1; i++)
 	{
 		if (span == 0)
 			break;
-		if (span > *(it + 1) - *it)
-			span = *(it + 1) - *it;
+		if (span > v[i + 1] - v[i])
+			span = v[i + 1] - v[i];
 	}
 	return span;
 }
@@ -94,9 +93,7 @@ const char* Span::BadRangeException::what() const throw()
 
 std::ostream&	operator<<(std::ostream& o, const Span& span)
 {
-	const std::vector<int>& v = span.getV();
-	std::vector<int>::const_iterator it;
-	for (it = v.begin(); it != v.end(); it++)
-		o << *it << " ";
+	for (size_t i = 0; i < span.getV().size(); i++)
+		o << span.getV()[i] << " ";
 	return o;
 }

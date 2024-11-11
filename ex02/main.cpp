@@ -6,13 +6,14 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 00:25:01 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 23:15:05 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/11 13:43:34 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MutantStack.hpp"
 #include <iostream>
 #include <list>
+#include <algorithm>
 #define TITLE "\e[1;33m"
 #define NONE "\e[0m"
 
@@ -51,7 +52,6 @@ int main()
 		std::cout << *it << std::endl;
 		++it;
 	}
-	std::cout << std::endl;
 
 	std::cout << TITLE << "Test 2: compare with list container" << NONE << std::endl;
 	std::list<int> list;
@@ -73,7 +73,6 @@ int main()
 		std::cout << *it2 << std::endl;
 		++it2;
 	}
-	std::cout << std::endl;
 
 	std::cout << TITLE << "Test 3: use member functions of std::stack" << NONE << std::endl;
 	std::cout << "mstack:" << std::endl;

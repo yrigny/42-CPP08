@@ -6,14 +6,14 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:37:07 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 18:58:31 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/11 13:46:19 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 #include <iostream>
 #include <cstdlib>
-#define MAX_SIZE 100
+#define MAX_SIZE 10000
 #define TITLE "\e[1;33m"
 #define NONE "\e[0m"
 

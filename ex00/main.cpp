@@ -6,7 +6,7 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:05:21 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 01:18:36 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/11 13:49:45 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <iostream>
 #include <vector>
 #include <list>
-#include <array>
+#include <deque>
 #define MAX_SIZE 10
 #define CLR "\e[33m"
 #define BOLD "\e[1m"
@@ -109,32 +109,35 @@ int main()
 		std::cout << "Not found" << std::endl;
 	}
 	
-	std::cout << CLR BOLD "Test 3: array container" NONE << std::endl;
-	std::array<int, MAX_SIZE> arr;
-	arr.fill(-1);
-	std::cout << "Array: [ ";
-	for (int i = 0; i < MAX_SIZE; i++)
-		std::cout << arr[i] << " ";
+	std::cout << CLR BOLD "Test 3: deque container" NONE << std::endl;
+	std::deque<int> d;
+	std::cout << "Assign 42 to 5 elements in the deque" << std::endl;
+	d.assign(5, 42);
+	std::cout << "Push 3 to the deque" << std::endl;
+	d.push_back(3);
+	std::cout << "Deque: [ ";
+	for (std::deque<int>::iterator it = d.begin(); it != d.end(); it++)
+		std::cout << *it << " ";
 	std::cout << "]" << std::endl;
-	std::cout << "find 3 in array: ";
+	std::cout << "find 3 in deque: ";
 	try
 	{
-		std::cout << easyfind(arr, 3) << std::endl;
+		std::cout << easyfind(d, 3) << std::endl;
 	}
 	catch (std::exception &e)
 	{
 		std::cout << "Not found" << std::endl;
 	}
-	std::cout << "Place 3 in the array" << std::endl;
-	arr[3] = 3;
-	std::cout << "Array: [ ";
-	for (int i = 0; i < MAX_SIZE; i++)
-		std::cout << arr[i] << " ";
+	std::cout << "Empty the deque" << std::endl;
+	d.clear();
+	std::cout << "Deque: [ ";
+	for (std::deque<int>::iterator it = d.begin(); it != d.end(); it++)
+		std::cout << *it << " ";
 	std::cout << "]" << std::endl;
-	std::cout << "find 3 in array: ";
+	std::cout << "find 3 in empty deque: ";
 	try
 	{
-		std::cout << easyfind(arr, 3) << std::endl;
+		std::cout << easyfind(d, 3) << std::endl;
 	}
 	catch (std::exception &e)
 	{

@@ -6,13 +6,14 @@
 /*   By: yrigny <yrigny@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 21:06:31 by yrigny            #+#    #+#             */
-/*   Updated: 2024/11/10 01:31:13 by yrigny           ###   ########.fr       */
+/*   Updated: 2024/11/11 12:17:08 by yrigny           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 # include <algorithm>
+# include <stdexcept>
 
 template <typename T>
 int& easyfind(T& container, int n)
